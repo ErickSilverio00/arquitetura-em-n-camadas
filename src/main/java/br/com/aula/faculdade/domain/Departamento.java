@@ -5,31 +5,31 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
-public class Aluno {
-
+public class Departamento {
     @Id
     @GeneratedValue
     private Integer id;
     private String nome;
 
-    @OneToMany(mappedBy = "aluno")
-    private List<Telefone> telefones;
+    @OneToMany(mappedBy = "departamento")
+    private List<Curso> curso;
 
-    @ManyToOne
-    private Curso curso;
+    @OneToOne
+    private Coordenador coordenador;
 
-    public Aluno() {
+    public Departamento() {
+
     }
 
-    public Aluno(Integer id, String nome, List<Telefone> telefones, Curso curso) {
+    public Departamento(Integer id, String nome, List<Curso> curso, Coordenador coordenador) {
         this.id = id;
         this.nome = nome;
-        this.telefones = telefones;
         this.curso = curso;
+        this.coordenador = coordenador;
     }
 
     public Integer getId() {
@@ -48,20 +48,20 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public List<Telefone> getTelefones() {
-        return telefones;
-    }
-
-    public void setTelefones(List<Telefone> telefones) {
-        this.telefones = telefones;
-    }
-
-    public Curso getCurso() {
+    public List<Curso> getCurso() {
         return curso;
     }
 
-    public void setCurso(Curso curso) {
+    public void setCurso(List<Curso> curso) {
         this.curso = curso;
+    }
+
+    public Coordenador getCoordenador() {
+        return coordenador;
+    }
+
+    public void setCoordenador(Coordenador coordenador) {
+        this.coordenador = coordenador;
     }
 
 }

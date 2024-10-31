@@ -9,27 +9,27 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Aluno {
-
+public class Disciplina {
     @Id
     @GeneratedValue
     private Integer id;
     private String nome;
 
-    @OneToMany(mappedBy = "aluno")
-    private List<Telefone> telefones;
-
     @ManyToOne
     private Curso curso;
 
-    public Aluno() {
+    @OneToMany(mappedBy = "disciplina")
+    private List<Turma> turma;
+
+    public Disciplina() {
+
     }
 
-    public Aluno(Integer id, String nome, List<Telefone> telefones, Curso curso) {
+    public Disciplina(Integer id, String nome, Curso curso, List<Turma> turma) {
         this.id = id;
         this.nome = nome;
-        this.telefones = telefones;
         this.curso = curso;
+        this.turma = turma;
     }
 
     public Integer getId() {
@@ -48,20 +48,20 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public List<Telefone> getTelefones() {
-        return telefones;
-    }
-
-    public void setTelefones(List<Telefone> telefones) {
-        this.telefones = telefones;
-    }
-
     public Curso getCurso() {
         return curso;
     }
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public List<Turma> getTurma() {
+        return turma;
+    }
+
+    public void setTurma(List<Turma> turma) {
+        this.turma = turma;
     }
 
 }
